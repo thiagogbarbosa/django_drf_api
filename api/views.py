@@ -9,7 +9,8 @@ from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
-from api.filters import ProductFilter
+
+from api.filters import ProductFilter, InStockFilterBackend
 
 #GET and POST requests for Products
 class ProductListCreateApiView(generics.ListCreateAPIView):
@@ -19,7 +20,9 @@ class ProductListCreateApiView(generics.ListCreateAPIView):
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
-        filters.OrderingFilter]
+        filters.OrderingFilter,
+        InStockFilterBackend
+        ]
     # the '=' is to return the exact match in the field
     search_fields = ['=name','description']
     ordering_fields = ['name', 'price', 'stock']
