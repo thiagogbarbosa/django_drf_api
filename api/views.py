@@ -14,7 +14,7 @@ from rest_framework.views import APIView
 from api.filters import InStockFilterBackend, OrderFilter, ProductFilter
 from api.models import Order, OrderItem, Product
 from api.serializers import (OrderSerializer, ProductInfoSerializer,
-                             ProductSerializer)
+                             ProductSerializer, OrderCreateSerializer)
 
 
 #GET and POST requests for Products
@@ -74,11 +74,21 @@ class OrderViewSet(viewsets.ModelViewSet):
     filterset_class = OrderFilter
     filter_backends = [DjangoFilterBackend]
     
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+                
+    def get_serializer_class(self):
+        #can also check if POST: if self.request.method == 'POST'
+        if self.action == 'create':
+            return OrderCreateSerializer
+        return super().get_serializer_class()
+    
     def get_queryset(self):
         qs = super().get_queryset()
         if not self.request.user.is_staff:
             qs = qs.filter(user=self.request.user)
         return qs
+    
     
 
 # class UserOrderListApiView(generics.ListAPIView):
