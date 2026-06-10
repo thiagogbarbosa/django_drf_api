@@ -12,9 +12,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.filters import InStockFilterBackend, OrderFilter, ProductFilter
-from api.models import Order, OrderItem, Product
+from api.models import Order, OrderItem, Product, User
 from api.serializers import (OrderSerializer, ProductInfoSerializer,
-                             ProductSerializer, OrderCreateSerializer)
+                             ProductSerializer, OrderCreateSerializer, UserSerializer)
 
 
 #GET and POST requests for Products
@@ -79,7 +79,7 @@ class OrderViewSet(viewsets.ModelViewSet):
                 
     def get_serializer_class(self):
         #can also check if POST: if self.request.method == 'POST'
-        if self.action == 'create':
+        if self.action == 'create' or self.action == 'update':
             return OrderCreateSerializer
         return super().get_serializer_class()
     
@@ -90,12 +90,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return qs
     
     
-
-# class UserOrderListApiView(generics.ListAPIView):
-#     queryset = Order.objects.prefetch_related('items__product')
-#     serializer_class = OrderSerializer
-#     permission_classes = [IsAuthenticated]
-    
-#     def get_queryset(self):
-#         qs = super().get_queryset()
-#         return qs.filter(user=self.request.user)
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    pagination_class = None

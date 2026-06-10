@@ -63,14 +63,40 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 
 GET http://localhost:8000/orders/b0fbb7b7-e16b-481d-b101-891d5f11ad45 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMDMwNTYwLCJpYXQiOjE3ODEwMzAyNjAsImp0aSI6IjY2ZGJlZTAxY2RkMDRiNmE4Mjg5MjI1NGUyOGE2YTM5IiwidXNlcl9pZCI6IjEifQ.yl5_FeT5xONWRLBiJ-LZMSETJH8Qfe92ZAp7YTlDEHw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMDQ5MzI3LCJpYXQiOjE3ODEwNDkwMjcsImp0aSI6Ijk2Yzk0YTRhYWJmMDRkNjlhMWNhOTkyYjVkNzMzYjMzIiwidXNlcl9pZCI6IjEifQ.ASkbZlvsvqI7tehJu-VYjyCkSHm-JmWGTXOtyzZrcWo
+
+###
+
+PUT  http://localhost:8000/orders/8ca95da0-cf09-4066-83ba-88f8976bd788/  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMDQ5ODkzLCJpYXQiOjE3ODEwNDk1OTMsImp0aSI6IjNkMGJjZjVhMDJhYjQyZmJiMTZkYzYxYzZiYmQ1YmJiIiwidXNlcl9pZCI6IjEifQ.TiP4ubGO4fCHqqhVCx7enTt2Ddo3W13yVlw11Fb3Sr4
+
+{
+    "status": "Confirmed",
+    "items": [
+        {
+            "product": 5,
+            "quantity": 4
+        },
+        {
+            "product": 3,
+            "quantity": 3
+        }
+    ]
+}
+
+
+###
+DELETE  http://localhost:8000/orders/8ca95da0-cf09-4066-83ba-88f8976bd788/  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMDQ5ODkzLCJpYXQiOjE3ODEwNDk1OTMsImp0aSI6IjNkMGJjZjVhMDJhYjQyZmJiMTZkYzYxYzZiYmQ1YmJiIiwidXNlcl9pZCI6IjEifQ.TiP4ubGO4fCHqqhVCx7enTt2Ddo3W13yVlw11Fb3Sr4
 
 
 ###
 
 POST http://localhost:8000/orders/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMDMzOTUzLCJpYXQiOjE3ODEwMzM2NTMsImp0aSI6IjJkZjE5MTNmZjdmZTQ0ZGU5Mjk0ZWU5NmQ0MjIyYjEzIiwidXNlcl9pZCI6IjEifQ.imTSFJ4YWYsr95zN3kFNzWusFaP1i9p716bM0Gp0IyE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMDQ5ODkzLCJpYXQiOjE3ODEwNDk1OTMsImp0aSI6IjNkMGJjZjVhMDJhYjQyZmJiMTZkYzYxYzZiYmQ1YmJiIiwidXNlcl9pZCI6IjEifQ.TiP4ubGO4fCHqqhVCx7enTt2Ddo3W13yVlw11Fb3Sr4
 
 {
     "status": "Pending",
